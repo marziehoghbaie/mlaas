@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+{#Style#}
+<style>
+
+.FormClass{
+    display: none;
+}
+
+</style>
+{#            End Style#}
+        </head>
+        <body>
+{#        <form class="form-group" role="form" method= "POST" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#                {{form}}#}
+{#            <input type="submit" value="Submit">#}
+{#            </form>#}
+{#        {{ your_html_variable|safe }}#}
+
+
+<form method="POST" id="f1" enctype="multipart/form-data" class="form-group" role="form">
+    {% csrf_token %}
+
+    <div id="ModelDataForm">
+        <div id="Data_div">
+            {{ Data_Model_Form.UserDataSet }}
+        </div>
+        <div id="Model_div">
+            {{ Data_Model_Form.Classification_Model_Type }}
+        </div>
+
+    </div>
+
+    <div id="kNN_regression_div" class="FormClass">
+        {{ kNNRegForm }}
+    </div>
+
+    <div id="kNN_categorical_div" class="FormClass">
+        {{ kNNCatForm }}
+    </div>
+
+    <div id="GaussianNB_div" class="FormClass">
+        {{ GaussianNBForm }}
+    </div>
+
+    <div id="BernoulliNB_div" class="FormClass">
+        {{ BernoulliNBForm }}
+    </div>
+    <div id="MultinomialNB_div" class="FormClass">
+        {{ MultinomialNBForm }}
+    </div>
+    <div id="SVC_div" class="FormClass">
+        {{ SVCForm }}
+    </div>
+    <div id="SVR_div" class="FormClass">
+        {{ SVRForm }}
+    </div>
+
+    <input id="sf1" type="submit" value="Submit 1">
+{#    <button id="sf2" type="button"> value="Submit 2"</button>#}
+</form>
+
+
+<script>
+
+{#$(document).ready(function(){#}
+{#   $("#sf2").click(function () {#}
+{#       $("#ModelForm").hide()#}
+{#       $("#f2").toggle();#}
+{#   });#}
+{#});#}
+
+
+
+$(document).ready(function(){
+    $("#Model_div").change(function(){
+        var selectedmodel = $("#Model_div option:selected").val();
+        if (selectedmodel=='kNN_regression' ){
+            $(".FormClass").hide();
+            $("#kNN_regression_div").toggle();
+        }
+        else if (selectedmodel=='kNN_categorical'){
+            $(".FormClass").hide();
+            $("#kNN_categorical_div").toggle();
+        }
+        else if (selectedmodel=='GaussianNB'){
+            $(".FormClass").hide();
+            $("#GaussianNB_div").toggle();
+        }
+        else if (selectedmodel=='BernoulliNB'){
+            $(".FormClass").hide();
+            $("#BernoulliNB_div").toggle();
+        }
+        else if (selectedmodel=='MultinomialNB'){
+            $(".FormClass").hide();
+            $("#MultinomialNB_div").toggle();
+        }
+        else if (selectedmodel=='SVC'){
+            $(".FormClass").hide();
+            $("#SVC_div").toggle();
+        }
+        else if (selectedmodel=='SVR'){
+            $(".FormClass").hide();
+            $("#SVR_div").toggle();
+        }
+    })
+    ;return false;
+});
+
+
+
+</script>
+        </body>
+    </html>
